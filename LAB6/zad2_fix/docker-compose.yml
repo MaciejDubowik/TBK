@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  server:
+    build: "server"
+    volumes:
+      - ./server:/home/node/app
+    ports:
+      - "9000:80"
+  client:
+    build: "client"
+    volumes:
+      - ./client:/home/node/app
+    ports:
+      - "3000:80"
+    depends_on:
+      - server
