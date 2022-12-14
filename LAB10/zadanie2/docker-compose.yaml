@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  access-log:
+    image: diamol/ch04-access-log
+    networks:
+        - network-zad2
+  image-of-the-day:
+    image: diamol/ch04-image-of-the-day
+    ports:
+      - "8080:80"
+    deploy:
+      replicas: 4
+      update_config:
+        parallelism: 2
+        delay: 10s
+        failure_action: rollback
+        monitor: 60s
+      rollback_config:
+        parallelism: 2
+        delay: 10s
+        monitor: 60s
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost"]
+        interval: 30s
+        timeout: 10s
+        retries: 3
+    networks:
+        - network-zad2
+  image-gallery:
+    image: diamol/ch04-image-gallery
+    networks:
+        - network-zad2
+networks:
+    network-zad2:
