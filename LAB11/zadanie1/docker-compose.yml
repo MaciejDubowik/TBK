@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  todo-list:
+    image: diamol/ch09-todo-list
+    ports:
+      - "8080:8080"
+    networks:
+      - app-net
+
+  prometheus:
+    image: mmiotkug/prometheus-image:1.0
+    ports:
+      - "9090:9090"
+    networks:
+      - app-net
+
+  grafana:
+    image: diamol/ch09-grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - app-net
+
+
+networks:
+  app-net:
+    external:
+      name: nat
