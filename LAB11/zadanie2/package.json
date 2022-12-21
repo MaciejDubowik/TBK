@@ -1,0 +1,11 @@
+{
+  "name": "zadanie2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "prometheus": "prometheus"
+  },
+  "author": "",
+  "license": "ISC"
+}
