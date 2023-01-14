@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: maciejdubowik/hello-world:2.0
+    ports:
+    - containerPort: 80
+
